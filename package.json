@@ -1,6 +1,6 @@
 {
  "name": "sools-express-serve",
- "version": "1.23.0",
+ "version": "1.24.0",
  "main": "index.js",
  "scripts": {
   "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,7 +12,7 @@
   "express": "^4.18.2",
   "isbot": "^5.1.17",
   "puppeteer": "^23.1.1",
-  "sools-core-server": "1.19.0"
+  "sools-core-server": "^1.19.0"
  },
  "repository": {
   "type": "git",
