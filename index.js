@@ -10,7 +10,8 @@ module.exports = {
   name: 'express-serve',
   construct: ({ }, { serve: config }) => {
     const app = express()
-    const protocol = config.mode === 'http' ? http : https
+    const mode = config.mode || 'https'
+    const protocol = mode === 'http' ? http : https
     const server = protocol.createServer({
       ...(config.options || {})
     }, app)
@@ -61,7 +62,7 @@ module.exports = {
       }
 
     })
-    console.log(`Listening on port ${config.port}`)
+    console.log(`Listening on port ${mode}://:${config.port}`)
     server.listen(config.port, '0.0.0.0')
 
     return app
