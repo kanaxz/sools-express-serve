@@ -29,7 +29,6 @@ module.exports = {
       await page.goto(url, { waitUntil: 'domcontentloaded' })
 
       await page.waitForFunction(() => {
-        console.log(document.body.className)
         return document.body.classList.contains('sools-app-ready')
       })
 
@@ -52,8 +51,9 @@ module.exports = {
 
     app.use('/*', async (req, res) => {
       const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`
-      console.log(fullUrl)
+      
       const isBot = /*true || /**/ getIsBot(req.headers['user-agent'])
+      console.log(fullUrl, isBot, req.headers[PUPPETEER_FLAG] === '1')
       if (isBot && req.headers[PUPPETEER_FLAG] !== '1') {
         const html = await renderPage(fullUrl)
         res.send(html)
