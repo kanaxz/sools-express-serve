@@ -1,12 +1,12 @@
-const express = require('express')
-const http = require('http')
-const https = require('https')
-const { isbot: getIsBot } = require('isbot')
-const { join } = require('path')
-const puppeteer = require('puppeteer')
+import express from 'express'
+import http from 'http'
+import https from 'https'
+import { isbot as getIsBot } from 'isbot'
+import { join } from 'path'
+import puppeteer from 'puppeteer'
 const PUPPETEER_FLAG = 'x-sools-express-puppeteer'
 
-module.exports = {
+export default {
   name: 'express-serve',
   construct: ({ }, { serve: config }) => {
     const app = express()
@@ -51,7 +51,7 @@ module.exports = {
 
     app.use('/*', async (req, res) => {
       const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`
-      
+
       const isBot = /*true || /**/ getIsBot(req.headers['user-agent'])
       console.log(fullUrl, isBot, req.headers[PUPPETEER_FLAG] === '1')
       if (isBot && req.headers[PUPPETEER_FLAG] !== '1') {
